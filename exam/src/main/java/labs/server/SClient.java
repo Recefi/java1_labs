@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package labs.server;
 
-import labs.MBuilder;
 import labs.Model;
 import com.google.gson.Gson;
 import java.io.DataInputStream;
@@ -18,18 +14,18 @@ import labs.Msg;
 
 public class SClient implements Runnable {
     int id;
-    Socket cs_s;
+    Socket sock;
     DataInputStream dis;
     DataOutputStream dos;
     
-    Model m = MBuilder.build();
+    Model m = Model.build();
     Gson gson = new Gson();
     
-    public SClient(int id, Socket cs) {
+    public SClient(int id, Socket sock) {
         this.id = id;
-        this.cs_s = cs;
+        this.sock = sock;
         try {
-            dos = new DataOutputStream(cs.getOutputStream());
+            dos = new DataOutputStream(sock.getOutputStream());
         } catch (IOException ex) {
             Logger.getLogger(SClient.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -38,7 +34,7 @@ public class SClient implements Runnable {
     @Override
     public void run() {
         try {
-            dis = new DataInputStream(cs_s.getInputStream());
+            dis = new DataInputStream(sock.getInputStream());
             System.out.println("Client" + id + " thread started");
             
             notifyClient();

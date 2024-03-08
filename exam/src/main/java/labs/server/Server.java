@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package labs.server;
 
-import labs.MBuilder;
 import labs.Model;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -18,7 +14,7 @@ import java.util.logging.Logger;
 import labs.Pnt;
 
 public class Server {
-    Model m = MBuilder.build();
+    Model m = Model.build();
     
     ExecutorService service = Executors.newCachedThreadPool();
     ArrayList<SClient> clients = new ArrayList<>();
@@ -31,27 +27,26 @@ public class Server {
     public void StartServer() {
         int port = 7474;
         InetAddress ip = null;
-        ServerSocket ss;
+        ServerSocket sSock;
         
         int numClients = 0;
         
         try {
             m.setPnt(new Pnt(0, 0));
-            m.addObserver(() -> { notifyAllClients(); });
+            m.addObserver(this::notifyAllClients);  // m.addObserver(() -> { notifyAllClients(); });
             
             ip = InetAddress.getLocalHost();
-            ss = new ServerSocket(port, 0, ip);
+            sSock = new ServerSocket(port, 0, ip);
             System.out.println("Server started");
             
             while (true) {
-                Socket cs = ss.accept();
-                System.out.println("Client " + ++numClients + " connected. Port: " + cs.getPort());
+                Socket cSock = sSock.accept();
+                System.out.println("Client " + ++numClients + " connected. Port: " + cSock.getPort());
                 
-                SClient client = new SClient(numClients, cs);
+                SClient client = new SClient(numClients, cSock);
                 clients.add(client);
                 service.submit(client);
             }
-            
         } catch (IOException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
