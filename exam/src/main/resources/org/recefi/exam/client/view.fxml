@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.recefi.exam.client.CController">
+   <top>
+      <Label fx:id="pntLbl" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="120.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER_RIGHT">
+         <BorderPane.margin>
+            <Insets right="100.0" top="20.0" />
+         </BorderPane.margin>
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+   </top>
+   <bottom>
+      <Button fx:id="connectBtn" mnemonicParsing="false" onAction="#connect" text="Присоединиться" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="20.0" right="250.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
+   <center>
+      <Pane fx:id="mainPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#movePnt" prefHeight="250.0" prefWidth="450.0" style="-fx-border-color: black; -fx-background-color: #dedede;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </Pane>
+   </center>
+</BorderPane>
