@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Model {
     Pnt pnt;
-    ArrayList<IObserver> observers = new ArrayList<>();
+    ArrayList<ObserverInt> observers = new ArrayList<>();
     static Model m = new Model();
 
     static public Model build() {
@@ -14,7 +14,7 @@ public class Model {
     public Pnt getPnt() { return pnt; }
 
     void refresh() {
-        for (IObserver obs : observers)
+        for (ObserverInt obs : observers)
             obs.refresh();
     }
 
@@ -23,7 +23,7 @@ public class Model {
         refresh();
     }
 
-    public void addObserver(IObserver obs) {
+    public void addObserver(ObserverInt obs) {
         observers.add(obs);
     }
 }

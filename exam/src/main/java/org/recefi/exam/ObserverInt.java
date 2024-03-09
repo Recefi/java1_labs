@@ -1,5 +1,5 @@
 package org.recefi.exam;
 
-public interface IObserver {
+public interface ObserverInt {
     public void refresh();
 }
